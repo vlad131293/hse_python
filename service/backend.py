@@ -3,13 +3,16 @@ import requests
 
 class WorkDays:
 
+    NUM_HOURS = 8
+
     def __init__(self) -> None:
         self.session = requests.Session()
         self.cash = []
 
     def validate_data(self, data: dict) -> None:
-        
-        pass
+        assert (data['year'] > 0) and (data['year'] < 10000)
+        assert (data['month'] > 0) and (data['month'] < 13)
+        assert data['salary'] >= 0
 
     
     def transorm_data(self, s: str) -> int:
@@ -23,7 +26,7 @@ class WorkDays:
 
         return num_work_days
 
-    def get_data(self, year: str, month: str) -> int:
+    def get_wd(self, year: str, month: str) -> int:
         query = f"https://isdayoff.ru/api/getdata?year={year}&month={month}"
 
         result = self.session.get(query)
@@ -38,9 +41,9 @@ class WorkDays:
 
         self.validate_data(data) # Валидация данных
 
-        num_work_days = self.get_data(data['year'], data['month'])
+        num_work_days = self.get_wd(data['year'], data['month'])
 
-        hour_income = data["salary"] / num_work_days
+        hour_income = data["salary"] / num_work_days / self.NUM_HOURS
         hour_income = round(hour_income, 2)
 
         result = {
@@ -52,7 +55,7 @@ class WorkDays:
 
 def main(year, month):
     model = WorkDays()
-    n = model.get_data(year, month)
+    n = model.get_wd(year, month)
     return n
 
 
