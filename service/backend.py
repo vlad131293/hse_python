@@ -7,7 +7,7 @@ class WorkDays:
 
     def __init__(self) -> None:
         self.session = requests.Session()
-        self.cash = []
+        self.cache = []
 
     def validate_data(self, data: dict) -> None:
         assert (data['year'] > 0) and (data['year'] < 10000)
@@ -31,7 +31,7 @@ class WorkDays:
 
         result = self.session.get(query)
         content = result.content
-        self.cash.append(content)
+        self.cache.append(content)
         
         num_work_days = self.transorm_data(content)
 
