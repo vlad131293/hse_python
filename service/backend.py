@@ -53,7 +53,7 @@ class WorkDays:
         return result
         
 
-def main(year, month):
+def main(year: int, month: int) -> int:
     model = WorkDays()
     n = model.get_wd(year, month)
     return n
