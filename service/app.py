@@ -9,6 +9,7 @@ app = FastAPI(
 )
 model = WorkDays()
 
+
 @app.post("/accept_data")
 async def accept_data(data: Item) -> dict:
     result = model.main(dict(data))
