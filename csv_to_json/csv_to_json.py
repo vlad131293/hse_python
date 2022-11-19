@@ -16,7 +16,7 @@ class Converter:
             for row in reader:
                 rows.append(row)
         return rows
-    
+
     def transform_data(self, rows: List[list]) -> List[dict]:
         keys = rows[0]
         result = []
@@ -31,10 +31,10 @@ class Converter:
                     val = val if val != '' else None
                     temp[key] = val
                 result.append(temp)
-        return result 
+        return result
 
     def save_json(self, data: List[dict], json_file_name: str) -> None:
-        
+
         with open(json_file_name, 'w') as file:
             json.dump(data, file)
 
