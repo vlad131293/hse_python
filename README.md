@@ -3,4 +3,5 @@
 Студент: Сахненко Владислав
 
 - [service](service) - Сервис для расчета почасовой ставки
-- [csv_to_json.py](csv_to_json.py) - Скрипт для конвертации csv в json
+- [csv_to_json](csv_to_json) - Скрипт для конвертации csv в json
+- [comprehensions](comprehensions.ipynb) - Ноутбук с решениями задач в одну строчку
