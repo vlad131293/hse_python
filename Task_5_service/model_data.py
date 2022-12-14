@@ -5,4 +5,4 @@ from typing import Optional
 class Item(BaseModel):
     year: Optional[int]
     month: Optional[int]
-    salary : Optional[float]
+    salary: Optional[float]

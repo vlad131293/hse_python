@@ -14,15 +14,14 @@ class WorkDays:
         assert (data['month'] > 0) and (data['month'] < 13)
         assert data['salary'] >= 0
 
-    
-    def transorm_data(self, s: str) -> int:
+    def transform_data(self, s: str) -> int:
         if isinstance(s, bytes):
             s = s.decode()
-        
+
         temp = [int(x) for x in list(s)]
-        num_days = len(temp) # Всего дней в месяце
-        num_nwork_days = sum(temp) # Всего не рабочих дней 
-        num_work_days = num_days - num_nwork_days # Всего рабочих
+        num_days = len(temp)  # Всего дней в месяце
+        num_nwork_days = sum(temp)  # Всего не рабочих дней
+        num_work_days = num_days - num_nwork_days  # Всего рабочих
 
         return num_work_days
 
@@ -32,14 +31,14 @@ class WorkDays:
         result = self.session.get(query)
         content = result.content
         self.cache.append(content)
-        
-        num_work_days = self.transorm_data(content)
+
+        num_work_days = self.transform_data(content)
 
         return num_work_days
 
     def main(self, data: dict) -> dict:
 
-        self.validate_data(data) # Валидация данных
+        self.validate_data(data)  # Валидация данных
 
         num_work_days = self.get_wd(data['year'], data['month'])
 
@@ -51,7 +50,7 @@ class WorkDays:
             "hour_income": hour_income
         }
         return result
-        
+
 
 def main(year: int, month: int) -> int:
     model = WorkDays()
